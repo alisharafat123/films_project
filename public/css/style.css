@@ -1,0 +1,22 @@
+.error{
+    display: none;
+}
+
+.error_show{
+    color: red;
+}
+
+input.invalid, select.invalid{
+    border: 2px solid red;
+}
+
+input.valid, select.valid{
+    border: 2px solid green;
+}
+.login-page{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-origin: cover;
+    background-size: cover;
+}
