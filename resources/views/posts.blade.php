@@ -14,10 +14,10 @@
                                              <!-- /.box-header -->
                         <div class="box-body">
                             <div class="container_12">
-                                <div class="grid_12"> <img src="https://dummyimage.com/500x450/000/fff" alt="website template image" class="fleft">
+                                <div class="grid_12"> <img src="{{ url('img/move.jpg') }}" alt="website template image" class="fleft">
                                     <h2>{{ $post->name }} </h2>
-                                    <p>{{ $post->description }}</p>
-                                    <a href="{{ route('posts.show',$post->id) }}" class="btn btn-primary btn-sm">View</a>
+                                    <p class="product-descriptions">{{ $post->description }}</p>
+                                    <a href="{{ route('films.show',$post->slug) }}" class="btn btn-primary btn-sm">View</a>
                                 </div>
                             </div>
                         </div>

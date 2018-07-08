@@ -12,12 +12,12 @@
 */
 
 Route::get('/', 'Auth\LoginController@index');
-Route::get('posts', 'HomeController@posts')->name('posts');
+Route::get('films', 'HomeController@posts')->name('posts');
 Auth::routes();
 
-Route::post('posts', 'HomeController@postPost')->name('posts.post');
+Route::post('films', 'HomeController@postFilms')->name('films.post');
 
-Route::get('posts/{id}', 'HomeController@show')->name('posts.show');
+Route::get('films/{slug}', 'HomeController@show')->name('films.show');
 Route::get('/home', 'HomeController@index');
 Route::get('films_list', 'FilmsController@index');
 Route::get('create_films', 'FilmsController@create');

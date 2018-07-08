@@ -41,11 +41,13 @@ class HomeController extends Controller
 
 
 
-    public function show($id)
+    public function show($slug)
 
     {
         $page_tile = 'Home';
-        $data['post'] = Films::find($id);
+        $data['film'] = Films::where(['slug'=>$slug])->first();
+        //var_dump($data); exit;
+
         $data['page_title'] = $page_tile;
         return view('postsShow')->with($data);
 
@@ -53,13 +55,13 @@ class HomeController extends Controller
 
 
 
-    public function postPost(Request $request)
+    public function postFilms(Request $request)
 
     {
         $this->validate($request, [
             'rate' => 'required',
         ]);
-        $post = Post::find($request->id);
+        $post = Films::find($request->id);
 
 
 

@@ -84,9 +84,9 @@ img {
 
 .card {
 
-    background: #eee;
+    /*background: #eee;*/
 
-    padding: 3em;
+    /*padding: 3em;*/
 
     line-height: 1.5em; }
 
@@ -143,7 +143,8 @@ img {
     color: #ff9f1a; }
 
 .product-title, .rating, .product-description, .price, .vote, .sizes {
-
+    word-wrap: break-word;
+    width: 77%;
     margin-bottom: 15px; }
 
 .product-title {
@@ -157,7 +158,9 @@ img {
 .size:first-of-type {
 
     margin-left: 40px; }
-
+.product-descriptions{
+    word-wrap: break-word;
+}
 .color {
 
     display: inline-block;

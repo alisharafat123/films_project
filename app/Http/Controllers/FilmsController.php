@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class FilmsController extends Controller {
 
+    public function __construct()
+       {
+           $this->middleware('auth');
+       }
     public function index() {
         $data['page_title'] = 'Films';
         $students = Films::all();
