@@ -6,6 +6,7 @@ use App\Films;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -51,7 +52,7 @@ class HomeController extends Controller
         $page_tile = 'Home';
         $data['film'] = Films::where(['slug'=>$slug])->first();
         //var_dump($data); exit;
-
+        $data['comments'] = DB::table('comments')->where(['film_id' => $data['film']->id])->get();
         $data['page_title'] = $page_tile;
         return view('postsShow')->with($data);
 
@@ -62,28 +63,32 @@ class HomeController extends Controller
     public function postFilms(Request $request)
 
     {
-        $this->validate($request, [
-            'rate' => 'required',
-        ]);
-        $post = Films::find($request->id);
+                if(auth()->user()) {
+                    $this->validate($request, [
+                        'rate' => 'required',
+                        'comment' => 'required',
+                    ]);
+                    $post = Films::find($request->id);
 
 
 
-        $rating = new \willvincent\Rateable\Rating;
+                    $rating = new \willvincent\Rateable\Rating;
 
-        $rating->rating = $request->rate;
-        if(auth()->user()) {
+                    $rating->rating = $request->rate;
             $rating->user_id = auth()->user()->id;
-
-
-            $post->ratings()->save($rating);
+             if(isset($request->comment)) {
+                 $db = DB::table('comments')->insert(
+                     ['user_id' => auth()->user()->id, 'film_id' => $request->id, 'comment' => $request->comment]
+                 );
+             }
+           $post->ratings()->save($rating);
 
         }
         else{
             return redirect()->route("register");
         }
 
-        return redirect()->route("posts");
+        return redirect()->back();
 
     }
 }

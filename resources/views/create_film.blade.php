@@ -10,7 +10,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('post_film') }}" method="post" id="film_form">
+            <form role="form" action="{{ url('post_film') }}" method="post" id="film_form" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body">
                 <div class="row">
@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="film_description">Description</label>
-                            <input type="text" class="form-control" id="film_description" placeholder="Description" name="description">
+                            <textarea class="form-control" id="film_description" placeholder="Description" name="description"></textarea>
                             <span class="error">This field is required</span>
                         </div>
                         <div class="form-group">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Photo</label>
-                            <input type="file" class="form-control" id="film_photo" name="photo">
+                            <input type="file" class="form-control" id="film_photo" name="file">
                             {{--<span class="error">This field is required</span>--}}
                         </div>
                         <div class="form-group">

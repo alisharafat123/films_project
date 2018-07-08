@@ -14,7 +14,7 @@
                                              <!-- /.box-header -->
                         <div class="box-body">
                             <div class="container_12">
-                                <div class="grid_12"> <img src="{{ url('img/move.jpg') }}" alt="website template image" class="fleft">
+                                <div class="grid_12"> <img src="{{ url('storage/app/img/'.$post->photo) }}" alt="website template image" class="fleft">
                                     <h2>{{ $post->name }} </h2>
                                     <p class="product-descriptions">{{ $post->description }}</p>
                                     <a href="{{ route('films.show',$post->slug) }}" class="btn btn-primary btn-sm">View</a>
@@ -29,7 +29,7 @@
     </div>
 
 
-
+</div>
     <script type="text/javascript">
 
         $("#input-id").rating();

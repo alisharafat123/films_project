@@ -160,6 +160,7 @@ img {
     margin-left: 40px; }
 .product-descriptions{
     word-wrap: break-word;
+    width: 90%;
 }
 .color {
 

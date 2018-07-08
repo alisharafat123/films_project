@@ -21,6 +21,15 @@ class FilmsController extends Controller {
     public function create(Request $request){
 
         if($request->has('post')){
+            $photo = '';
+            if ($request->file('file') && $request->file('file')->isValid()) {
+                $folder = 'img';
+
+                $extension = $request->file->extension();
+                $name = $request->input('name').'_'.time().'.'.$extension;
+                $path = $request->file->storeAs($folder, $name);
+                $photo = $name;
+            }
             $film = new Films();
             $film->name = $request->input('name');
             $film->description = $request->input('description');
@@ -28,8 +37,8 @@ class FilmsController extends Controller {
             $film->rating = $request->rating;
             $film->ticket_price = $request->input('ticket_price');
             $film->genre_id = $request->input('genre_id');
-            $film->photo = $request->input('photo');
-            $film->slug = $request->input('slug');
+            $film->photo = $photo;
+            $film->slug = $request->input('slug').str_random(9);
             $film->country_id = $request->input('country_id');
 
             if($film->save()){
