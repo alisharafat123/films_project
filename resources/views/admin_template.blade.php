@@ -63,14 +63,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
     <!-- Header -->
-    @if (Auth::check())
+    @if (Auth::check() && \Illuminate\Support\Facades\Auth::user()->type != 'user')
     @include('includes.header')
 
     <!-- Sidebar -->
     @include('includes.sidebar')
-@endif
     <!-- Content Wrapper. Contains page content -->
-    @if (Auth::check())
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
                <section class="content-header">
@@ -93,8 +91,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Footer -->
     @include('includes.footer')
-        @else
+        @elseif(Auth::check() && \Illuminate\Support\Facades\Auth::user()->type == 'user')
+        <div class="pull-right">
+            <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+
+        </div>
             <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            @yield('content')
+        </section><!-- /.content -->
+            @else
+                    <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
             @yield('content')

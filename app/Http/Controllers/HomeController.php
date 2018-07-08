@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Films;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,9 @@ class HomeController extends Controller
     {
         $page_tile = 'Home';
         $data['page_title'] = $page_tile;
+        if(Auth::check() && Auth::user()->type == 'user')
+        return redirect('films');
+        else
         return view('home',$data);
     }
     public function posts()
@@ -68,14 +72,16 @@ class HomeController extends Controller
         $rating = new \willvincent\Rateable\Rating;
 
         $rating->rating = $request->rate;
-
-        $rating->user_id = auth()->user()->id;
-
-
-
-        $post->ratings()->save($rating);
+        if(auth()->user()) {
+            $rating->user_id = auth()->user()->id;
 
 
+            $post->ratings()->save($rating);
+
+        }
+        else{
+            return redirect()->route("register");
+        }
 
         return redirect()->route("posts");
 
