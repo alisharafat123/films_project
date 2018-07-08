@@ -21,5 +21,7 @@ Route::get('films/{slug}', 'HomeController@show')->name('films.show');
 Route::get('/home', 'HomeController@index');
 Route::get('films_list', 'FilmsController@index');
 Route::get('create_films', 'FilmsController@create');
-//Route::get('/check_regNo', 'StudentsController@check_registrationExist');
+Route::get('create_genre', 'FilmsController@create_genre');
+Route::get('genre', 'FilmsController@genre');
+Route::post('post_genre', 'FilmsController@create_genre');
 Route::post('post_film', 'FilmsController@create');

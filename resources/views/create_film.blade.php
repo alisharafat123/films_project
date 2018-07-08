@@ -45,15 +45,10 @@
                         </div>
                         <div class="form-group">
                             <label>Genre</label>
-                            <select class="form-control" name="genre_id" id="film_genre">
-                                <option class="selected">Select Genre</option>
-                                <option value="1">Comedy</option>
-                                <option value="2">Romance</option>
-                                <option value="3">Drama</option>
-                                <option value="4">Horror</option>
-                                <option value="5">Action</option>
-                            </select>
-                            <span class="error">This field is required</span>
+                            @foreach(\App\Genre::all() as $genre)
+                                <input type="checkbox" id="inlineCheckbox1" name="genre[]" value="{{ $genre->genre_id }}"> {{ $genre->genre_title }}
+                            @endforeach
+                                <span class="error">This field is required</span>
                         </div>
                         <div class="form-group">
                             <label>Country</label>

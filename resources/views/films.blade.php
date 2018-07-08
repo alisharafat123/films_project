@@ -26,7 +26,20 @@
                                     @foreach($films as $film)
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">{{ $film->name }}</td>
-                                            <td>{{ $film->genre_id }}</td>
+                                            <td>
+                                                <?php
+                                                $genres  = \Illuminate\Support\Facades\DB::table('films_genre')
+                                                        ->join('films', 'films_genre.film_id', '=', 'films.id')
+                                                        ->join('genre', 'films_genre.genre_id', '=', 'genre.genre_id')
+                                                        ->select('films_genre.*', 'genre.genre_title')
+                                                        ->where('films_genre.film_id', $film->id)
+                                                        ->get();
+                                                //$genres = \Illuminate\Support\Facades\DB::table('films_genre')->where('film_id', $film->id)->get();
+                                                ?>
+                                                @foreach($genres as $genre)
+                                                    {{ $genre->genre_title }},
+                                                    @endforeach
+                                            </td>
                                             <td>
                                                 {{ $film->country_id }}
                                             </td>
