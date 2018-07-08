@@ -20,6 +20,9 @@ input.valid, select.valid{
     background-origin: cover;
     background-size: cover;
 }
+.box-comments .comment-text{
+    word-wrap: break-word;
+}
 .container_12 {
     position: relative;
     border-radius: 3px;

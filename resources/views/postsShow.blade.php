@@ -20,7 +20,13 @@
 
                                     <div class="preview-pic tab-content">
 
-                                        <div class="tab-pane active" id="pic-1"><img src="{{ url('storage/app/img/'.$film->photo) }}" /></div>
+                                        <div class="tab-pane active" id="pic-1">
+                                            @if(!empty($post->photo))
+                                                <img src="{{ url('storage/app/img/'.$post->photo) }}" alt="website template image">
+                                            @else
+                                                <img src="{{ url('storage/app/img/Science Fiction_1531049480.jpeg') }}" alt="website template image">
+                                            @endif
+                                            </div>
 
                                     </div>
 
